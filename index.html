@@ -71,6 +71,30 @@ $$
 The parameter \( \rho \) denotes the common correlation.
 </p>
 
+  <h2>Estimating the Common Correlation</h2>
+
+<p>
+The common correlation parameter \( \rho \) may be estimated using
+</p>
+
+$$
+\hat{\rho}
+=
+\max\left(0,\ 1-s_n^2\right)
+$$
+
+<p>
+where
+</p>
+
+$$
+s_n^2
+=
+\frac{1}{n-1}
+\sum_{i=1}^n
+(x_i-\bar{x})^2
+$$
+
   <p>
 This calculator computes critical values for the maximum absolute statistic under an equicorrelated Gaussian model.
 The critical value is determined numerically using adaptive root-finding combined with numerical integration.
