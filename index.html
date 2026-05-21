@@ -2,14 +2,81 @@
 <html>
 <head>
   <title>Critical Value Calculator</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
   <style>
-    body { font-family: Arial; max-width: 600px; margin: 40px auto; }
-    input, button { margin: 5px 0; padding: 8px; width: 100%; }
-    button { cursor: pointer; }
+    body {
+      font-family: Arial;
+      max-width: 800px;
+      margin: 40px auto;
+      line-height: 1.6;
+    }
+
+    input, button {
+      margin: 5px 0;
+      padding: 8px;
+      width: 100%;
+    }
+
+    button {
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
+  <h2>Methodology</h2>
+
+<p>
+The critical value \( c_\alpha \) is obtained by solving:
+</p>
+
+$$
+P(M_n(|X|) \le c_\alpha)
+=
+P\left(
+\max_i
+\left|
+\sqrt{\rho}Z + \sqrt{1-\rho}Z_i
+\right|
+\le c_\alpha
+\right)
+$$
+
+$$
+=
+E_Z\left[
+P\left(
+\max_i
+\left|
+\sqrt{\rho}Z + \sqrt{1-\rho}Z_i
+\right|
+\le c_\alpha
+\,\middle|\, Z=z
+\right)
+\right]
+$$
+
+$$
+=
+\int_{-\infty}^{\infty}
+\Psi_{\mu=\sqrt{\rho}z,\sigma=\sqrt{1-\rho}}^n(c_\alpha)
+\phi(z)\,dz
+=
+1-\alpha
+$$
+
+<p>
+The parameter \( \rho \) denotes the common correlation.
+</p>
+
+  <p>
+This calculator computes critical values for the maximum absolute statistic under an equicorrelated Gaussian model.
+The critical value is determined numerically using adaptive root-finding combined with numerical integration.
+</p>
+
+  
 <h2>Critical Value Calculator</h2>
 
 <label>&alpha; (FWER):</label>
