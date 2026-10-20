@@ -29,6 +29,14 @@
   <h2>Methodology</h2>
 
 <p>
+  Let $X = (X_1, X_2, ..., X_n)'$ be a jointly normal and equicorrelated vector of standardized test statistics. To complete
+</p>
+  $$H_0: \bm{\mu} = \bm{0}$$
+  $$H_A: \bm{\mu} \neq \bm{0}$$
+  <p>
+  while controlling the family-wise error rate at level $\alpha$, a critical value is required. Presented below is an alteration to the Bonferroni correction to account for equicorrelation.
+</p>
+<p>
 The critical value \( c_\alpha \) is obtained by solving:
 </p>
 
@@ -74,7 +82,7 @@ The parameter \( \rho \) denotes the common correlation.
   <h2>Estimating the Common Correlation</h2>
 
 <p>
-The common correlation parameter \( \rho \) may be estimated using
+The common correlation parameter \( \rho \) may be estimated using a method-of-moments estimator from "A test of location for exchangeable multivariate normal data with unknown correlation" by Follman and Proschan (2012),
 </p>
 
 $$
@@ -98,6 +106,71 @@ $$
   <p>
 This calculator computes critical values for the maximum absolute statistic under an equicorrelated Gaussian model.
 The critical value is determined numerically using adaptive root-finding combined with numerical integration.
+</p>
+  <p>
+  Alternatively, the common correlation can be estimated through the following scheme which is more robust under a wider range of alternative hypotheses.
+  </p>
+  <p>
+  Let \(X_{(1)} \le X_{(2)} \le \cdots \le X_{(n)}\)
+  denote the ordered test statistics. Define
+  \(\mu_{(j)} = E[Z_{(j)}]\) and
+  \(\sigma^2_{(j,k)} = \operatorname{Cov}(Z_{(j)},Z_{(k)})\),
+  where \(Z_1,\ldots,Z_n\) are i.i.d. standard normal random variables
+  and \(Z_{(j)}\) denotes the \(j\)-th order statistic.
+</p>
+
+$$
+m_i =
+\frac{
+\displaystyle
+\sum_{j=1}^{n}\mu_{(j)}^2
+-\frac{1}{i-1}
+\left(\sum_{j=1}^{i-1}\mu_{(j)}\right)^2
+-\frac{1}{n-i}
+\left(\sum_{j=i+1}^{n}\mu_{(j)}\right)^2
+}{n-2}.
+$$
+
+<p>
+  The correction term \(v_i\) accounts for the covariances and
+  expected values induced by ordering:
+</p>
+
+$$
+v_i =
+\frac{
+\displaystyle
+\sum_{j=1}^{n}\sigma^2_{(i,j)}
+-\frac{1}{i-1}
+\sum_{j=1}^{i-1}\sum_{k=1}^{i-1}
+\sigma^2_{(j,k)}
+-\frac{1}{n-i}
+\sum_{j=i+1}^{n}\sum_{k=i+1}^{n}
+\sigma^2_{(j,k)}
+}{n-2}.
+$$
+
+<p>
+  Using these correction terms, an asymptotically unbiased estimator
+  of the common correlation parameter under \(H_0\) is
+</p>
+
+$$
+\boxed{
+\widehat{\rho}_p =
+\max_{2\le i\le n-1}
+\left(
+0,\,
+1-\frac{s_{p_i}^{\,2}}{m_i+v_i}
+\right)
+}
+$$
+
+<p>
+  Here, \(s_{p_i}^{\,2}\) is the sample variance associated with
+  the ordered statistic \(X_{(i)}\), as defined in the estimator's
+  original formulation. The maximization is taken over
+  \(i=2,\ldots,n-1\).
 </p>
 
   
